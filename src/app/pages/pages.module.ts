@@ -13,6 +13,7 @@ import { PagesComponent } from './pages.component';
 import { SharedModule } from '../shared/shared.module';
 import { IncrementComponent } from '../components/increment/increment.component';
 import { GraphDoughnutComponent } from '../components/graph-doughnut/graph-doughnut.component';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
 
 @NgModule({
     declarations: [
@@ -21,7 +22,8 @@ import { GraphDoughnutComponent } from '../components/graph-doughnut/graph-dough
         ProgressComponent,
         Graph1Component,
         IncrementComponent,
-        GraphDoughnutComponent
+        GraphDoughnutComponent,
+        AccountSettingsComponent
     ],
     exports: [
         DashboardComponent,
