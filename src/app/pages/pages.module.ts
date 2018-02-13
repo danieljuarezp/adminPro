@@ -14,6 +14,8 @@ import { SharedModule } from '../shared/shared.module';
 import { IncrementComponent } from '../components/increment/increment.component';
 import { GraphDoughnutComponent } from '../components/graph-doughnut/graph-doughnut.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { PromisesComponent } from './promises/promises.component';
+import { RxjsComponent } from './rxjs/rxjs.component';
 
 @NgModule({
     declarations: [
@@ -23,7 +25,9 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
         Graph1Component,
         IncrementComponent,
         GraphDoughnutComponent,
-        AccountSettingsComponent
+        AccountSettingsComponent,
+        PromisesComponent,
+        RxjsComponent
     ],
     exports: [
         DashboardComponent,
