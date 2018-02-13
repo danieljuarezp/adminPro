@@ -26,7 +26,7 @@ export class PromisesComponent implements OnInit {
       let interval = setInterval(()=>{
         count +=1;
         if(count===3){
-          resolve();
+          resolve('termino');
           clearInterval(interval);
         }
       },1000);
