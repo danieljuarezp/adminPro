@@ -19,4 +19,22 @@ export class UserService {
                     });
   }
 
+  login(user: User, remember: boolean) {
+
+    if (remember) {
+      localStorage.setItem('Username', user.username);
+    } else {
+      localStorage.removeItem('Username');
+    }
+
+    let url = urlServices + '/Login';
+
+    return this.http.post(url, user)
+                    .map((resp: any) => {
+                      localStorage.setItem('Id', resp.id);
+                      localStorage.setItem('Token', resp.token);
+                      localStorage.setItem('User', JSON.stringify(resp.user));
+                    });
+  }
+
 }
