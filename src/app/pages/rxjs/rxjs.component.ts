@@ -1,5 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Observable, Subscription } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
+import 'rxjs/add/operator/retry';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'app-rxjs',
@@ -46,10 +50,10 @@ export class RxjsComponent implements OnInit, OnDestroy {
         //}
       }, 500);
     })
-    .retry(2)
-    .map(resp => {
-      return resp.val;
-    })
+  .retry(2)
+  .map( (resp: any) => {
+    return resp.val;
+  })
     .filter((value, index) => {
       if (value % 2 === 1) {
         // impar
