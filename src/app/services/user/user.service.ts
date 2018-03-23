@@ -26,6 +26,18 @@ export class UserService {
                     });
   }
 
+  updateUser(user: User) {
+    let url = urlServices + '/User/' + user.username;
+    url += '?token=' + this.token;
+
+    return this.http.put(url, user)
+                    .map((resp: any) => {
+                      this.saveStorage(this.user._id, this.token, resp.user);
+                      swal('Usuario Actualizado', resp.user.username, 'success');
+                      return resp.user;
+                    });
+  }
+
   loggedIn() {
     return (this.token.length > 5 ) ? true : false;
   }

@@ -21,8 +21,8 @@ const appRoutes: Routes = [
 ]
 },
 
-{path: 'login', component: LoginComponent},
-{path: 'register', component: RegisterComponent},
+{path: 'login', component: LoginComponent, data: { title: 'Ingresar' }},
+{path: 'register', component: RegisterComponent, data: { title: 'Registrarse' }},
 {path: '**', component: NopagefoundComponent}
 ];
 

@@ -9,6 +9,7 @@ import { AccountSettingsComponent } from "./account-settings/account-settings.co
 import { PromisesComponent } from "./promises/promises.component";
 import { RxjsComponent } from "./rxjs/rxjs.component";
 import { LoginGuardGuard } from "../services/service.index";
+import { ProfileComponent } from './profile/profile.component';
 
 const pagesRoutes: Routes = [
     {
@@ -18,10 +19,11 @@ const pagesRoutes: Routes = [
         children: [
             { path: 'dashboard', component: DashboardComponent, data: { title: 'Dashboard' } },
             { path: 'progress', component: ProgressComponent, data: { title: 'Progress Bar' } },
-            { path: 'graph', component: Graph1Component , data: { title: 'Graphs' }},
-            { path: 'promises', component: PromisesComponent , data: { title: 'Promises' }},
+            { path: 'graph', component: Graph1Component , data: { title: 'Graficas' }},
+            { path: 'promises', component: PromisesComponent , data: { title: 'Promesas' }},
             { path: 'rxjs', component: RxjsComponent , data: { title: 'RxJs' }},
-            { path: 'account-settings', component: AccountSettingsComponent, data: { title: 'Account Settings' } },
+            { path: 'profile', component: ProfileComponent , data: { title: 'Perfil' }},
+            { path: 'account-settings', component: AccountSettingsComponent, data: { title: 'Configuracion' } },
             { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
         ]
     }
