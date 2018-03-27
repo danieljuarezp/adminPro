@@ -6,16 +6,16 @@ import { urlServices } from '../config/config';
 })
 export class ImgPipe implements PipeTransform {
 
-  transform(img: string, collection: string = 'User'): any {
-
-    if (img.indexOf('https') >= 0 ){
-      return img;
-    }
-
-    let url =  urlServices + '/Img';
+  transform(img: string, collection: string = 'Users'): any {
+    
+    let url =  urlServices + '/Img/';
 
     if (!img) {
        return url + 'Users/NoFound';
+    }
+
+    if (img.indexOf('https') >= 0 ) {
+      return img;
     }
 
     switch (collection) {
@@ -29,7 +29,7 @@ export class ImgPipe implements PipeTransform {
        url += '/Companies/' + img;
       break;
       default:
-      console.log('Colecion no valida');
+      console.log('Coleccion no valida', collection);
       url += 'Users/NoFound';
       break;
     }

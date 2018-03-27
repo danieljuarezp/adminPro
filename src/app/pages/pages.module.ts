@@ -6,6 +6,8 @@ import { PAGES_ROUTES } from './pages.routes';
 
 import { ChartsModule } from 'ng2-charts';
 
+import { CommonModule } from '@angular/common';
+
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProgressComponent } from './progress/progress.component';
 import { Graph1Component } from './graph1/graph1.component';
@@ -40,6 +42,7 @@ import { ProfileComponent } from './profile/profile.component';
         GraphDoughnutComponent
     ],
     imports: [
+        CommonModule,
         SharedModule,
         PAGES_ROUTES,
         FormsModule,

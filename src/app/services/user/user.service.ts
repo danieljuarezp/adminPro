@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { urlServices } from '../../config/config';
 import 'rxjs/add/operator/map';
 import { Router } from '@angular/router';
+import { UploadService } from '../upload/upload.service';
 declare var swal: any;
 
 @Injectable()
@@ -12,7 +13,7 @@ export class UserService {
   user: User;
   token: string;
 
-  constructor(public http: HttpClient, public router: Router) {
+  constructor(public http: HttpClient, public router: Router, public _uploadFile: UploadService) {
     this.loadStorage();
   }
 
@@ -27,6 +28,7 @@ export class UserService {
   }
 
   updateUser(user: User) {
+
     let url = urlServices + '/User/' + user.username;
     url += '?token=' + this.token;
 
@@ -36,6 +38,18 @@ export class UserService {
                       swal('Usuario Actualizado', resp.user.username, 'success');
                       return resp.user;
                     });
+  }
+
+  changeImage(file: File, id: string) {
+    
+    this._uploadFile.uploadFile(file, 'Users', id)
+                    .then((resp: any) => {
+                      this.user.img = resp.user.img;
+                      this.saveStorage(id, this.token, this.user);
+                      swal('Imagen Actualizada', resp.user.username, 'success');
+                    })
+                    .catch(resp => console.log(resp));
+
   }
 
   loggedIn() {
@@ -70,7 +84,10 @@ export class UserService {
   logout() {
     this.token = '';
     this.user = null;
-    localStorage.clear();
+    localStorage.removeItem('Id');
+    localStorage.removeItem('Token');
+    localStorage.removeItem('User');
+    localStorage.removeItem('Settings');
     this.router.navigate(['/login']);
   }
 
