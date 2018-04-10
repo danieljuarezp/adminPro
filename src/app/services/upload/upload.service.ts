@@ -21,7 +21,7 @@ export class UploadService {
         if ( xhr.status === 200) {
           resolve(JSON.parse(xhr.response));
         } else {
-          reject(JSON.parse(xhr.response);
+          reject(JSON.parse(xhr.response));
         }
       }
     };
