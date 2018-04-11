@@ -109,4 +109,17 @@ export class UserService {
     }
   }
 
+  loadUsers(pagination: number = 0) {
+    let url = urlServices + '/User?pagination=' + pagination;
+
+    return this.http.get(url);
+  }
+
+  searchUser(val: string) {
+    let url = urlServices + '/Search/Collection/User/' + val;
+
+    return this.http.get(url)
+                    .map((resp: any) => resp.User);
+  }
+
 }

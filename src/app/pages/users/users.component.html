@@ -2,13 +2,13 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body" align="center">
-                <input #input type="text" class="form-control" placeholder="Buscar usuario">
+                <input #input (keyup)="searchUser(input.value)" type="text" class="form-control" placeholder="Buscar usuario">
             </div>
         </div>
     </div>
 </div>
 
-<div class="row animated fadeIn">
+<div class="row animated fadeIn" *ngIf="loading">
     <div class="col-sm-12">
         <div class="alert alert-default text-center">
             <strong>Cargando...</strong>
@@ -20,11 +20,11 @@
     </div>
 </div>
 
-<div class="row animated fadeIn">
+<div class="row animated fadeIn" *ngIf="!loading">
     <div class="col-12">
         <div class="card">
             <div class="card-body" align="center">
-                <h3 class="card-title">Usuarios registrados (<small>1000</small>)</h3>
+                <h3 class="card-title">Usuarios registrados (<small>{{total}}</small>)</h3>
                 <br>
                 <table class="table table-hover">
                     <thead>
@@ -38,12 +38,23 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                        <tr *ngFor="let user of users">
+                            <td class="w70">
+                                <img [src]="user.img | img" class="img-50 img-circle">
+                            </td>
+                            <td>
+                                {{user.email}}
+                            </td>
+                            <td>
+                                {{user.firstname}} {{user.lastname}}
+                            </td>
+                            <td>
+                                {{user.role}}
+                            </td>
+                            <td>
+                                <label class="label label-danger" *ngIf="user.google">Google</label>
+                                <label class="label label-info" *ngIf="!user.google">Normal</label>
+                            </td>
                             <td>
                                 <button class="btn btn-primary"><i class="fa fa-save"></i></button>
                                 <button class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
@@ -51,8 +62,8 @@
                         </tr>
                     </tbody>
                 </table>
-                <button class="btn btn-default"><i class="fa fa-arrow-left"></i> Anterior</button>
-                <button class="btn btn-default">Siguiente <i class="fa fa-arrow-right"></i></button>
+                <button (click)="changePagination(-5)" class="btn btn-default"><i class="fa fa-arrow-left"></i> Anterior</button>
+                <button (click)="changePagination(5)" class="btn btn-default">Siguiente <i class="fa fa-arrow-right"></i></button>
             </div>
         </div>
     </div>
