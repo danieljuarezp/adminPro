@@ -122,4 +122,16 @@ export class UserService {
                     .map((resp: any) => resp.User);
   }
 
+  removeUser(username){
+
+    let url = urlServices + '/User/' + username;
+    url += '?token=' + this.token;
+    
+    return this.http.delete(url)
+                    .map( resp => {
+                      swal('Usuario borrado', 'Eliminado correctamente', 'success');
+                      return true;
+                    });
+  }
+
 }

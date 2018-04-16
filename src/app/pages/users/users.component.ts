@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user.model';
 import { UserService } from '../../services/service.index';
+declare var swal: any;
 
 @Component({
   selector: 'app-users',
@@ -59,6 +60,34 @@ export class UsersComponent implements OnInit {
                       this.users = users;
                       this.loading = false;
                     });
+  }
+
+  removeUser(user) {
+    if(user._id === this._userService.user._id) {
+      swal('No se puede borrar usuario', user.username, 'error');
+      return;
+    }
+
+    swal({
+      title:'Confirmación',
+      text:'Seguro de eliminar a ' + user.username,
+      icon: 'warning',
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((remove) => {
+
+      if (remove) {
+
+        this._userService.removeUser(user.username)
+        .subscribe(deleted => {
+          this.loadusers();
+        });
+
+      }
+
+    });
+
   }
 
 }
