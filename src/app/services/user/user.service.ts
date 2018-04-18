@@ -34,8 +34,10 @@ export class UserService {
 
     return this.http.put(url, user)
                     .map((resp: any) => {
-                      this.saveStorage(this.user._id, this.token, resp.user);
-                      swal('Usuario Actualizado', resp.user.username, 'success');
+                      if (user._id === this.user._id) {
+                        this.saveStorage(this.user._id, this.token, resp.user);
+                      }
+                      swal('Usuario Actualizado', resp.user.firstname + ' ' + resp.user.lastname, 'success');
                       return resp.user;
                     });
   }
@@ -46,7 +48,7 @@ export class UserService {
                     .then((resp: any) => {
                       this.user.img = resp.user.img;
                       this.saveStorage(id, this.token, this.user);
-                      swal('Imagen Actualizada', resp.user.username, 'success');
+                      swal('Imagen Actualizada', resp.user.firstname + ' ' + resp.user.lastname, 'success');
                     })
                     .catch(resp => console.log(resp));
 
@@ -77,7 +79,7 @@ export class UserService {
 
     return this.http.post(url, {token})
                     .map((resp: any) => {
-                    this.saveStorage(resp.id, resp.token, resp.user);
+                        this.saveStorage(resp.id, resp.token, resp.user);
                     });
   }
 

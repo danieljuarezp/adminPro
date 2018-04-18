@@ -81,6 +81,7 @@ export class UsersComponent implements OnInit {
 
         this._userService.removeUser(user.username)
         .subscribe(deleted => {
+          this.pagination = 0;
           this.loadusers();
         });
 
@@ -88,6 +89,11 @@ export class UsersComponent implements OnInit {
 
     });
 
+  }
+
+  saveUser(user: User) {
+    this._userService.updateUser(user)
+                      .subscribe();
   }
 
 }
