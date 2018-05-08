@@ -11,6 +11,7 @@ import { RxjsComponent } from "./rxjs/rxjs.component";
 import { LoginGuardGuard } from "../services/service.index";
 import { ProfileComponent } from './profile/profile.component';
 import { UsersComponent } from "./users/users.component";
+import { CompaniesComponent } from "./companies/companies.component";
 
 const pagesRoutes: Routes = [
     {
@@ -28,6 +29,7 @@ const pagesRoutes: Routes = [
 
             // Mantenimiento
             { path: 'users', component: UsersComponent, data: { title: 'Usuarios' } },
+            { path: 'companies', component: CompaniesComponent, data: { title: 'Empresas' } },
             { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
         ]
     }
